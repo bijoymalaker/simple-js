@@ -1,0 +1,7 @@
+#transiton-area{
+    display: none;
+}
+
+.transiton-area>div>div:nth-child(1){
+    background-color: violet;
+}
