@@ -11,18 +11,18 @@ loginBtn.addEventListener('click',function(){
 
 const depositBtn = document.getElementById("deposit");
 depositBtn.addEventListener("click",function(){
-    const depositNumber = parseFloat(document.getElementById('depositAmount').value);
+    const addedNumber = parseFloat(document.getElementById('depositAmount').value);
+    updateSpanText("currentDeposit", addedNumber);
 
-    const currentDepositNumber = parseFloat(document.getElementById("currentDeposit").innerText);
-    const totalDeposit = depositNumber + currentDepositNumber;
-    document.getElementById("currentDeposit").innerText = totalDeposit;
-
-    const currentBalanceNumber = parseFloat(document.getElementById("currentBalance").innerText);
-    const totalBalance = totalDeposit + currentBalanceNumber;
-    document.getElementById("currentBalance").innerText = totalBalance;
+    updateSpanText("currentBalance", addedNumber);
 
     document.getElementById("depositAmount").value ="";
 })
+function updateSpanText(id, addedNumber){
+    const currentNumber = parseFloat(document.getElementById(id).innerText);
+    const total = addedNumber + currentNumber;
+    document.getElementById(id).innerText = total;
+}
 
 
 //Withdraw button event handler
@@ -31,15 +31,9 @@ const withdrawBtn = document.getElementById("withdraw");
 withdrawBtn.addEventListener("click",function(){
     const withdrawNumber = parseFloat(document.getElementById("withdrawAmount").value);
 
-    const currentWithdrawNumber = parseFloat(document.getElementById("currentWithdraw").innerText);
-    const totalWithdraw = currentWithdrawNumber + withdrawNumber;
+    updateSpanText("currentWithdraw", withdrawNumber);
 
-    document.getElementById("currentWithdraw").innerText = totalWithdraw;
-
-    const currentBalance = document.getElementById("currentBalance").innerText;
-    const totalBalance = currentBalance - withdrawNumber;
-
-    document.getElementById("currentBalance").innerText = totalBalance;
+    updateSpanText("currentBalance", -1 * withdrawNumber);
 
     document.getElementById("withdrawAmount").value ="";
 })
